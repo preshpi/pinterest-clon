@@ -45,7 +45,7 @@ const Photos = ({ photos }) => {
               <p>
                 <Link href={photographer_url}>{photographer}</Link>
               </p>
-              <Link href={url}>photographer</Link>
+              {/* <Link href={url}>photographer</Link> */}
             </div>
           )
         )}
