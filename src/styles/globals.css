@@ -26,3 +26,20 @@ input{
 .my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
   margin-bottom: 30px;
 }
+
+/* scrollbar */
+::-webkit-scrollbar{
+    width: 12px;
+}
+
+::-webkit-scrollbar-track{
+    background:#eee;
+    border-radius:6px;
+    margin-block: .2rem;
+
+}
+
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(rgb(97, 90, 90), rgb(227, 225, 225));
+    border-radius:6px;
+}

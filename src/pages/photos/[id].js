@@ -111,78 +111,79 @@ export default function photoId({ pic }) {
     </div>
   );
 
-  // comment section
-  const [input, setInput] = useState("");
-  
-  const handleInput = (e) => {
-    setInput(e.target.value);
-  };
-
+  // save to collections
+  const notification = () => toast.success("Saved to collections!");
 
   return (
-    <div className="w-[85%] mt-[5%] mx-auto grid lg:flex justify-center ">
-      <div className=" flex items-center justify-center">
-        <Link
-          href={pic.url}
-          download={`${pic.alt}.jpg`}
-          className="cursor-pointer lg:w-[500px] md:w-[500px]  h-[600px] relative w-[320px]"
-        >
-          <Image
-            src={pic.src.portrait}
-            alt={pic.alt}
-            fill
-            sizes="300"
-            priority
-            className="object-cover rounded-tl-[30px] rounded-bl-[30px] shadow-lg"
-            style={{ backgroundColor: pic.avg_color }}
-          />
-        </Link>
-      </div>
-      <div className="lg:w-[500px] md:w-[500px] w-[320px] p-5 bg-[#fffff] rounded-tr-[30px] rounded-br-[30px] shadow-lg">
-        <div className="flex justify-between items-center">
-          <div className="flex justify-around">
-            <span className="text-[19px] font-[800] text-[#111111] transition-all duration-300 cursor-pointer h-12 w-12 hover:bg-gray-100 flex justify-center items-center rounded-[50px]">
-              <Dropdown
-                menu={{
-                  items,
-                }}
-                placement="bottom"
-                trigger={["click"]}
-              >
-                <span onClick={(e) => e.preventDefault()}>
-                  <FiMoreHorizontal />
-                </span>
-              </Dropdown>
-            </span>
-            <span className="text-[19px] font-[800] text-[#111111] transition-all duration-300 cursor-pointer h-12 w-12 hover:bg-gray-100 flex justify-center items-center rounded-[50px]">
-              <Popover placement="bottom" content={content}>
-                <FiShare />
-              </Popover>
-            </span>
-            <span className="text-[19px] font-[800] text-[#111111] transition-all duration-300 cursor-pointer h-12 w-12 hover:bg-gray-100 flex justify-center items-center rounded-[50px]">
-              <CopyToClipboard text={shareUrl} onCopy={notify}>
-                <GrLink />
-              </CopyToClipboard>
-              <Toaster />
-            </span>
+    <div className="h-screen flex items-center justify-center">
+      <div className="w-[85%] mx-auto grid lg:flex justify-center">
+        <div className="flex items-center justify-center">
+          <div
+            download={`${pic.alt}.jpg`}
+            className="cursor-pointer lg:w-[500px] md:w-[500px] h-[600px] relative w-[320px] shadow-lg"
+          >
+            <Image
+              src={pic.src.portrait}
+              alt={pic.alt}
+              fill
+              sizes="300"
+              priority
+              className="object-cover lg:rounded-tl-[30px] lg:rounded-bl-[30px] rounded-tl-[20px] rounded-tr-[20px] lg:rounded-tr-[0px] shadow-lg"
+              style={{ backgroundColor: pic.avg_color }}
+            />
           </div>
-          <button className="hover:bg-[#E60023] bg-[red] text-[14px] text-white h-[48px] p-[12px] rounded-[64px] w-[68px]">
-            Save
-          </button>
         </div>
-        <p className="lg:text-[38px] font-600">{pic.alt}</p>
-        <Link href={pic.photographer_url}>
-          <p className="cursor-pointer underline text-x">{pic.photographer}</p>
-        </Link>
+        <div className="lg:w-[500px] md:w-[500px] w-[320px] h-[600px] overflow-auto  p-5 bg-[#fffff]  lg:rounded-tr-[30px] lg:rounded-br-[30px] lg:rounded-bl-[0px] rounded-bl-[20px] rounded-br-[20px] shadow-lg">
+          <div className="flex justify-between items-center">
+            <div className="flex justify-around">
+              <span className="text-[19px] font-[800] text-[#111111] transition-all duration-300 cursor-pointer h-12 w-12 hover:bg-gray-100 flex justify-center items-center rounded-[50px]">
+                <Dropdown
+                  menu={{
+                    items,
+                  }}
+                  placement="bottom"
+                  trigger={["click"]}
+                >
+                  <span onClick={(e) => e.preventDefault()}>
+                    <FiMoreHorizontal />
+                  </span>
+                </Dropdown>
+              </span>
+              <span className="text-[19px] font-[800] text-[#111111] transition-all duration-300 cursor-pointer h-12 w-12 hover:bg-gray-100 flex justify-center items-center rounded-[50px]">
+                <Popover placement="bottom" content={content}>
+                  <FiShare />
+                </Popover>
+              </span>
+              <span className="text-[19px] font-[800] text-[#111111] transition-all duration-300 cursor-pointer h-12 w-12 hover:bg-gray-100 flex justify-center items-center rounded-[50px]">
+                <CopyToClipboard text={shareUrl} onCopy={notify}>
+                  <GrLink />
+                </CopyToClipboard>
+                <Toaster />
+              </span>
+            </div>
+            <button
+              onClick={notification}
+              className="hover:bg-[#E60023] bg-[red] text-[14px] text-white h-[48px] p-[12px] rounded-[64px] w-[68px]"
+            >
+              Save
+            </button>
+            <Toaster />
+          </div>
+          <p className="lg:text-[38px] font-600">{pic.alt}</p>
+          <Link href={pic.photographer_url}>
+            <p className="cursor-pointer underline text-x">
+              {pic.photographer}
+            </p>
+          </Link>
 
-        <div className="grid items-start justify-start mt-[5%]">
-          <p className="text-xl mt-4 font-bold">Comments</p>
-          <div className="mt-[5%]">
-            <MyComponent/>
+          <div className="grid items-start justify-start mt-[5%]">
+            <p className="text-xl mt-4 font-bold">Comments</p>
+            <div className="mt-[5%]">
+              <MyComponent />
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 }
- 

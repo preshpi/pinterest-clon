@@ -23,22 +23,22 @@ const ReplyForm = ({ onReply }) => {
           value={name}
           placeholder="Enter your name"
           required
-          className="bg-none outline-none h-[49px] w-[210px] rounded-[30px] border p-[13px] px-5 text-[#9197A3] text-[16px]"
+          className="bg-none outline-none lg:h-[49px] lg:w-[210px] rounded-[30px] border p-[13px] px-5 text-[#9197A3] text-[16px]"
           onChange={(e) => setName(e.target.value)}
         />
-        <div className="border rounded-[30px] outline-none w-[378px] h-[52px] px-3 inline-flex items-center justify-center">
+        <div className="border rounded-[30px] outline-none lg:w-[378px] lg:h-[52px] px-3 inline-flex items-center justify-center">
           <input
             type="text"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             required
             placeholder="Add a comment"
-            className="bg-none outline-none w-[378px] h-[49px] text-[#9197A3] text-[16px]"
+            className="bg-none outline-none lg:w-[378px] lg:h-[49px] text-[#9197A3] text-[16px]"
           />
           <div className="flex items-center jsutify-center">
             <button
               type="submit"
-              className="border rounded-[30px] p-3 bg-blue-600 text-white text-[16px]"
+              className="border rounded-[30px] p-3 hover:bg-[#E60023] bg-[red] text-white text-[16px]"
             >
               <AiOutlineSend />
             </button>
@@ -123,20 +123,20 @@ const MyComponent = () => {
             name="name"
             placeholder="Enter your name"
             required
-            className="bg-none outline-none h-[49px] w-[210px] rounded-[30px] border p-[13px] px-5 text-[#9197A3] text-[16px]"
+            className="bg-none outline-none lg:h-[49px] lg/md:w-[210px] rounded-[30px] border p-[13px] px-5 text-[#9197A3] text-[16px]"
           />
-          <div className="border rounded-[30px] outline-none w-[378px] h-[52px] px-3 inline-flex items-center jsutify-center">
+          <div className="border rounded-[30px] outline-none lg:w-[378px] lg:h-[52px] px-3 inline-flex items-center jsutify-center">
             <input
               name="comment"
               type="text"
               required
               placeholder="Add a comment"
-              className="bg-none outline-none w-[378px] h-[49px] text-[#9197A3] text-[16px]"
+              className="bg-none outline-none lg:w-[378px] lg:h-[49px] text-[#9197A3] text-[16px]"
             />
             <div className="flex items-center jsutify-center">
               <button
                 type="submit"
-                className="border rounded-[30px] p-3 bg-blue-600 text-white text-[16px]"
+                className="border rounded-[30px] p-3 hover:bg-[#E60023] bg-[red] text-white text-[16px]"
               >
                 <AiOutlineSend />
               </button>
