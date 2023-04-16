@@ -4,7 +4,7 @@ import { BsChevronDown } from "react-icons/bs";
 import Link from "next/link";
 import { useState } from "react";
 
-function Navbar({ onSearch }) {
+function VideoSearch({ onSearch }) {
   const [query, setQuery] = useState("");
 
   const handleKeyDown = async (e) => {
@@ -54,4 +54,4 @@ function Navbar({ onSearch }) {
   );
 }
 
-export default Navbar;
+export default VideoSearch;

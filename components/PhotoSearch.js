@@ -4,9 +4,10 @@ import { BsChevronDown } from "react-icons/bs";
 import Link from "next/link";
 import { useState } from "react";
 
-function Navbar({ onSearch }) {
-  const [query, setQuery] = useState("");
 
+function PhotoSearch({ onSearch }) {
+  const [query, setQuery] = useState("");
+ 
   const handleKeyDown = async (e) => {
     if (e.key === "Enter") {
       onSearch(query);
@@ -53,5 +54,4 @@ function Navbar({ onSearch }) {
     </div>
   );
 }
-
-export default Navbar;
+export default PhotoSearch;
