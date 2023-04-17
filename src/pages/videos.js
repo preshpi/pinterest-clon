@@ -3,7 +3,7 @@ import Videos from "../../components/Videos";
 import { getPopularVideos, getQueryVideos } from "../../lib/api";
 import Head from "next/head";
 import InfiniteScroll from "react-infinite-scroll-component";
-import VideoSearch from "../../components/videoSearch";
+import VideoSearch from "../../components/VideoSearch";
 
 export async function getServerSideProps() {
   const videoData = await getPopularVideos();
