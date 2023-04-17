@@ -72,3 +72,18 @@ input {
     background-position: 0% 50%, 50% 50%, 100% 100%;
   }
 }
+
+
+/* segmented styles */
+
+.activeState{
+  color:red;
+}
+
+.active .activeState {
+  color:blue;
+}
+
+body {
+  font-family: 'Chillax', sans-serif;
+}

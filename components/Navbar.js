@@ -1,6 +1,5 @@
 import React from "react";
 import { CgSearch } from "react-icons/cg";
-import { BsChevronDown } from "react-icons/bs";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -15,24 +14,25 @@ function Navbar({ onSearch }) {
 
   return (
     <div className="p-5">
-      <div className="flex justify-between items-center h-[52px] w-[95%] mx-auto">
-        <div className="text-3xl cursor-pointer">
-          <Link href="/">imageSurf</Link>
+      <div className="lg:flex grid gap-5 justify-between items-center h-[52px] w-[95%] mx-auto">
+        <div className="lg:text-3xl text-2xl cursor-pointer">
+          <Link href="/">mediaSurf</Link>
         </div>
-        <div className="bg-gray-200 lg:w-[940px] md:w-[400px] rounded-full lg:p-[7px] flex items-center justify-center">
+        <div className="border-b shadow lg:w-[540px] md:w-[400px] w-[320px] rounded-full lg:p-[3px] flex items-center justify-center">
           <span className="text-xl p-3">
             <CgSearch />
           </span>
           <input
             type="search"
-            className="lg:w-[880px] md:w-[400px] h-[38px] outline-none text-black"
+            className="lg:w-[580px] md:w-[400px] w-[272px] h-[30px] outline-none text-black"
             placeholder="Search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => handleKeyDown(e)}
           />
         </div>
-        <div className="flex gap-5 items-center justify-center ">
+        
+        {/* <div className="flex gap-5 items-center justify-center ">
           <div className="h-12 w-12 hover:bg-gray-100 grid place-items-center justify-center rounded-[50px] group transition-all duration-300 cursor-pointer">
             <button className="bg-gray-100 rounded-[20px] h-8 w-8 ring-black focus:ring-[1.5px] cursor-pointer">
               I
@@ -48,7 +48,7 @@ function Navbar({ onSearch }) {
               Accounts and more options
             </p>
           </span>
-        </div>
+        </div> */}
       </div>
     </div>
   );

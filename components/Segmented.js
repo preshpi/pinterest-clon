@@ -1,29 +1,24 @@
-import Link from "next/link";
-import { Menu } from "antd";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import Link from "next/link";
 
 function Navigation() {
-  const [current, setCurrent] = useState("");
   const router = useRouter();
 
-  const handleMenuClick = (e) => {
-    setCurrent(e.key);
+  // Define a function to determine if a link is active
+  const isActive = (pathname) => {
+    return router.pathname === pathname ? "bold border-b-2 border-blue-500" : "text-black";
   };
 
   return (
-    <Menu onClick={handleMenuClick} selectedKeys={[current]} mode="horizontal" className="flex items-center justify-center p-[3%]">
-      <Menu.Item key="photos">
-        <Link href="/photos">
-          Photos
-        </Link>
-      </Menu.Item>
-      <Menu.Item key="videos">
-        <Link href="/videos">
-          Videos
-        </Link>
-      </Menu.Item>
-    </Menu>
+    <nav className="flex items-center justify-center p-[3%] m-[9%] lg:m-0 gap-5 text-xl">
+      <Link href="/photos" className={isActive("/photos")}>
+        Photos
+      </Link>
+
+      <Link href="/videos" className={isActive("/videos")}>
+        Videos
+      </Link>
+    </nav>
   );
 }
 

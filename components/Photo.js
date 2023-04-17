@@ -16,11 +16,11 @@ const Photos = ({ scroll }) => {
 
   return (
     <div>
-      <div className="w-[85%] mx-auto">
-        <Navigation />
+      <Navigation />
+      <div className="w-[85%] mx-auto flex items-center justify-center">
         <Mansory
           breakpointCols={breakpointColumnsObj}
-          className="my-masonry-grid w-[85%] mx-auto"
+          className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >
           {scroll?.map(
