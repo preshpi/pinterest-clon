@@ -5,7 +5,6 @@ import Image from "next/image";
 import Navigation from "./Segmented";
 
 function Videos({ videoscroll }) {
-  console.log(videoscroll);
   const breakpointColumnsObj = {
     default: 4,
     1100: 3,

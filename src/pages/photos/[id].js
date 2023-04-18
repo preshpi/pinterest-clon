@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useState } from "react";
 import { getPhotosById } from "../../../lib/api";
 import Link from "next/link";
 import { FiMoreHorizontal, FiShare } from "react-icons/fi";
@@ -19,11 +18,12 @@ import {
 } from "react-share";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import toast, { Toaster } from "react-hot-toast";
-import Comments from "../../../components/Comments";
+import { useRouter } from 'next/router';
 import MyComponent from "../../../components/Comments";
 
 export async function getServerSideProps({ params }) {
   const pic = await getPhotosById(params.id);
+
   return {
     props: {
       pic,
@@ -32,7 +32,6 @@ export async function getServerSideProps({ params }) {
 }
 
 export default function photoId({ pic }) {
-  console.log(pic);
 
   // To download the image
   const downloadImage = () => {
@@ -114,9 +113,19 @@ export default function photoId({ pic }) {
   // save to collections
   const notification = () => toast.success("Saved to collections!");
 
+  // go back function
+    const router = useRouter();
+
+
   return (
-    <div className="h-screen flex items-center justify-center">
-      <div className="w-[85%] mx-auto grid lg:flex justify-center">
+    <div className="h-screen items-center justify-center">
+
+    <button type="button" onClick={() => router.back()} className="p-5">
+       Go back
+    </button>
+
+      <div className="flex items-center justify-center">
+       <div className="w-[85%] mx-auto grid lg:flex justify-center">
         <div className="flex items-center justify-center">
           <div
             download={`${pic.alt}.jpg`}
@@ -183,7 +192,9 @@ export default function photoId({ pic }) {
             </div>
           </div>
         </div>
+      </div> 
       </div>
+      
     </div>
   );
 }

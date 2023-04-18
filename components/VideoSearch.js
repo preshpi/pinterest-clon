@@ -15,7 +15,7 @@ function VideoSearch({ onSearch }) {
   return (
     <div className="p-5">
       <div className="lg:flex grid gap-5 justify-between items-center h-[52px] w-[95%] mx-auto">
-        <div className="lg:text-3xl text-2xl cursor-pointer">
+        <div className="lg:text-3xl text-2xl cursor-pointer logo">
           <Link href="/">videoSurf</Link>
         </div>
         <div className="border-b shadow lg:w-[540px] md:w-[400px] w-[320px] rounded-full lg:p-[3px] flex items-center justify-center">

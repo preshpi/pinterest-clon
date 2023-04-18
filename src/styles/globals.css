@@ -85,5 +85,9 @@ input {
 }
 
 body {
-  font-family: 'Chillax', sans-serif;
+font-family: 'Excon', sans-serif;
+}
+
+.logo{
+  font-family: 'Telma', cursive;
 }
