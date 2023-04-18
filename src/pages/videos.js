@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Videos from "../../components/Videos";
 import { getPopularVideos, getQueryVideos } from "../../lib/api";
 import Head from "next/head";
@@ -15,20 +15,23 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ videoData }) {
-  const [videoscroll, setVideoScroll] = useState(videoData);
+  const [videoscroll, setVideoScroll] = useState([]);
   const [page, setPage] = useState(1);
 
+  useEffect(() => {
+    setVideoScroll(videoData);
+  }, [videoData]);
+
   const fetchVideos = async () => {
-    const newData = await getPopularVideos(page);
+    const newData = await getPopularVideos(page + 1);
     setVideoScroll([...videoscroll, ...newData]);
     setPage(page + 1);
   };
 
-    const handleSearch = async (query) => {
-      const newData = await getQueryVideos(query);
-      setVideoScroll(newData);
-      console.log(newData);
-    };
+  const handleSearch = async (query) => {
+    const newData = await getQueryVideos(query);
+    setVideoScroll(newData);
+  };
 
   return (
     <div>

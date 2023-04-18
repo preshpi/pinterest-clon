@@ -2,8 +2,7 @@ import React from "react";
 import { getCuratedPhotos, getQueryPhotos } from "../../lib/api";
 import Photos from "../../components/Photo";
 import Head from "next/head";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PhotoSearch from "../../components/PhotoSearch";
 
 export async function getServerSideProps() {
@@ -20,7 +19,7 @@ export default function Home({ photoData }) {
   const [page, setPage] = useState(1);
 
   const fetchPhotos = async () => {
-    const newData = await getCuratedPhotos(page);
+    const newData = await getCuratedPhotos(page + 1);
     setScroll([...scroll, ...newData]);
     setPage(page + 1);
   };
@@ -28,6 +27,11 @@ export default function Home({ photoData }) {
   const handleSearch = async (query) => {
     const newData = await getQueryPhotos(query);
     setScroll(newData);
+    setPage(1);
+  };
+
+  const loadMore = () => {
+    fetchPhotos();
   };
 
   return (
@@ -36,14 +40,16 @@ export default function Home({ photoData }) {
         <title>Pinterest Clone | Photos</title>
       </Head>
       <PhotoSearch onSearch={handleSearch} />
-      <InfiniteScroll
-        dataLength={scroll.length}
-        next={fetchPhotos}
-        hasMore={true}
-        loader={<h4 className="dots w-[50%] mx-auto"></h4>}
-      >
         <Photos scroll={scroll} />
-      </InfiniteScroll>
+
+      <div className="flex justify-center">
+        <button
+          className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded mt-8"
+          onClick={loadMore}
+        >
+          Load More
+        </button>
+      </div>
     </div>
   );
 }

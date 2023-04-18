@@ -5,6 +5,7 @@ import Image from "next/image";
 import Navigation from "./Segmented";
 
 function Videos({ videoscroll }) {
+  console.log(videoscroll);
   const breakpointColumnsObj = {
     default: 4,
     1100: 3,
@@ -28,8 +29,8 @@ function Videos({ videoscroll }) {
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column"
           >
-            {videoscroll?.map(({ id, video_files, duration, image }) => (
-              <div key={id}>
+            {videoscroll?.map(({ id, video_files, duration, image }, index) => (
+              <div key={`${id}-${index}`}>
                 <div className="relative">
                   <figure className="h-auto w-auto">
                     <Image
@@ -38,7 +39,7 @@ function Videos({ videoscroll }) {
                       height={600}
                       width={400}
                       priority
-                      className="object-cover rounded-lg"
+                      className="object-cover rounded-lg bg-gray-200"
                       onClick={() => handleImageClick(id)}
                       style={{ cursor: "pointer" }}
                     />
