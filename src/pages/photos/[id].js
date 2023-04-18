@@ -114,6 +114,7 @@ export default function photoId({ pic }) {
   const notification = () => toast.success("Saved to collections!");
 
   // go back function
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const router = useRouter();
 
 
