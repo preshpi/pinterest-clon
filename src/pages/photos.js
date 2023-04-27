@@ -2,7 +2,7 @@ import React from "react";
 import { getCuratedPhotos, getQueryPhotos } from "../../lib/api";
 import Photos from "../../components/Photo";
 import Head from "next/head";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PhotoSearch from "../../components/PhotoSearch";
 
 export async function getServerSideProps() {
@@ -18,7 +18,7 @@ export default function Home({ photoData }) {
   const [scroll, setScroll] = useState(photoData);
   const [page, setPage] = useState(1);
 
-  const fetchPhotos = async () => {
+  const fetchPhotos = async (page) => {
     const newData = await getCuratedPhotos(page + 1);
     setScroll([...scroll, ...newData]);
     setPage(page + 1);
