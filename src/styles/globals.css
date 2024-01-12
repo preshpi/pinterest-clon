@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  min-height: 100vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
 input {
   padding: 2px;
   background: none;
@@ -73,21 +81,20 @@ input {
   }
 }
 
-
 /* segmented styles */
 
-.activeState{
-  color:red;
+.activeState {
+  color: red;
 }
 
 .active .activeState {
-  color:blue;
+  color: blue;
 }
 
 body {
-font-family: 'Excon', sans-serif;
+  font-family: "Excon", sans-serif;
 }
 
-.logo{
-  font-family: 'Telma', cursive;
+.logo {
+  font-family: "Telma", cursive;
 }

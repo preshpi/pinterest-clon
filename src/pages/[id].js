@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getPhotosById } from "../../../lib/api";
+import { getPhotosById } from "../../lib/api";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FiMoreHorizontal, FiShare } from "react-icons/fi";
@@ -19,7 +19,7 @@ import {
 } from "react-share";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import toast, { Toaster } from "react-hot-toast";
-import MyComponent from "../../../components/Comments";
+import MyComponent from "../../components/Comments";
 
 export async function getServerSideProps({ params }) {
   const pic = await getPhotosById(params.id);
@@ -61,9 +61,9 @@ export default function PhotoId({ pic }) {
   const notify = () => toast.success("Link copied!");
 
   const content = (
-    <div className="grid place-items-center justify-center p-3">
+    <div className="grid place-items-center justify-center px-3">
       <p className="text-center text-[16px] text-black">share</p>
-      <div className="flex flex-wrap mt-[3%] items-center gap-5 h-[170px] w-[300px]  mx-auto">
+      <div className="grid grid-cols-3 m-3 items-center gap-5 h-[170px] w-full mx-auto">
         <div>
           <WhatsappShareButton url={shareUrl}>
             <WhatsappIcon className="w-[48px] h-[48px] hover:opacity-75 rounded-full" />
@@ -111,38 +111,31 @@ export default function PhotoId({ pic }) {
     </div>
   );
 
-  // save to collections
-  const notification = () => toast.success("Saved to collections!");
-
   return (
-    <div className="h-screen items-center justify-center">
-      <button
-        type="button"
-        onClick={() => router.back()}
-        className="p-5 underline"
-      >
+    <div className="min-h-screen items-center justify-center p-5">
+      <button type="button" onClick={() => router.back()} className="underline">
         Go back
       </button>
 
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center p-5">
         <div className="w-[85%] mx-auto grid lg:flex justify-center">
           <div className="flex items-center justify-center">
             <div
               download={`${pic.alt}.jpg`}
-              className="cursor-pointer lg:w-[500px] md:w-[500px] h-[600px] relative w-[320px] shadow-lg lg:rounded-tl-[30px] lg:rounded-bl-[30px] rounded-tl-[20px] rounded-tr-[20px] lg:rounded-tr-[0px]"
+              className="cursor-pointer lg:w-[500px] md:w-[500px] h-[500px] relative w-[320px] lg:shadow-lg lg:rounded-tl-[30px] lg:rounded-bl-[30px] rounded-tl-[20px] rounded-tr-[20px] lg:rounded-tr-[0px]"
             >
               <Image
                 src={pic.src.portrait}
                 alt={pic.alt}
                 fill
-                sizes="300"
+                sizes="200"
                 priority
-                className="object-cover lg:rounded-tl-[30px] lg:rounded-bl-[30px] rounded-tl-[20px] rounded-tr-[20px] lg:rounded-tr-[0px]  shadow-lg"
+                className="object-cover lg:rounded-tl-[30px] lg:rounded-bl-[30px] rounded-tl-[20px] rounded-tr-[20px] lg:rounded-tr-[0px] lg:shadow-lg"
                 style={{ backgroundColor: pic.avg_color }}
               />
             </div>
           </div>
-          <div className="lg:w-[500px] md:w-[500px] w-[320px] h-[600px] overflow-auto  p-5 bg-[#fffff]  lg:rounded-tr-[30px] lg:rounded-br-[30px] lg:rounded-bl-[0px] rounded-bl-[20px] rounded-br-[20px] shadow-lg">
+          <div className="lg:w-[500px] md:w-[500px] w-[320px] lg:h-[500px] h-auto overflow-auto  p-5 bg-[#fffff]  lg:rounded-tr-[30px] lg:rounded-br-[30px] lg:rounded-bl-[0px] rounded-bl-[20px] rounded-br-[20px] shadow-lg">
             <div className="flex justify-between items-center">
               <div className="flex justify-around">
                 <span className="text-[19px] font-[800] text-[#111111] transition-all duration-300 cursor-pointer h-12 w-12 hover:bg-gray-100 flex justify-center items-center rounded-[50px]">
@@ -159,37 +152,34 @@ export default function PhotoId({ pic }) {
                   </Dropdown>
                 </span>
                 <span className="text-[19px] font-[800] text-[#111111] transition-all duration-300 cursor-pointer h-12 w-12 hover:bg-gray-100 flex justify-center items-center rounded-[50px]">
-                  <Popover placement="bottom" content={content}>
-                    <FiShare />
-                  </Popover>
-                </span>
-                <span className="text-[19px] font-[800] text-[#111111] transition-all duration-300 cursor-pointer h-12 w-12 hover:bg-gray-100 flex justify-center items-center rounded-[50px]">
                   <CopyToClipboard text={shareUrl} onCopy={notify}>
                     <GrLink />
                   </CopyToClipboard>
                 </span>
+                <span className="text-[19px] font-[800] text-[#111111] transition-all duration-300 cursor-pointer h-12 w-12 hover:bg-gray-100 flex justify-center items-center rounded-[50px]">
+                  <Popover placement="bottom" content={content}>
+                    <FiShare />
+                  </Popover>
+                </span>
               </div>
-              <button
-                onClick={notification}
-                className="hover:bg-[#E60023] bg-[red] text-[14px] text-white h-[48px] p-[12px] rounded-[64px] w-[68px]"
-              >
-                Save
-              </button>
+
               <Toaster />
             </div>
-            <p className="lg:text-[38px] font-600">{pic.alt}</p>
+            <p className="lg:text-[38px] font-600">
+              {pic.alt || "Image name not avaliable"}
+            </p>
             <Link href={pic.photographer_url}>
               <p className="cursor-pointer underline text-x">
                 {pic.photographer}
               </p>
             </Link>
 
-            <div className="grid items-start justify-start mt-[5%]">
+            {/* <div className="grid items-start justify-start mt-[5%]">
               <p className="text-xl mt-4 font-bold">Comments</p>
               <div className="mt-[5%]">
                 <MyComponent />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

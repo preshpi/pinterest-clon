@@ -1,10 +1,9 @@
 import Head from "next/head";
 import { getCuratedPhotos, getQueryPhotos } from "../../lib/api";
-import Navbar from "../../components/Navbar";
 import { useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
-import Allmedias from "../../components/Allmedias";
-
+import AllPhotos from "../../components/AllPhotos";
+import Navigation from "../../components/Navigation";
+import PhotoSearch from "../../components/PhotoSearch";
 
 export async function getServerSideProps() {
   const data = await getCuratedPhotos();
@@ -17,15 +16,8 @@ export async function getServerSideProps() {
 
 export default function Home({ data }) {
   const [photos, setPhotos] = useState(data);
-  const [page, setPage] = useState(1);
 
-  const fetchPhotos = async () => {
-    const newData = await getCuratedPhotos(page);
-    setPhotos([...photos, ...newData]);
-    setPage(page + 1);
-  };
-
-    const handleSearch = async (query) => {
+  const handleSearch = async (query) => {
     const newData = await getQueryPhotos(query);
     setPhotos(newData);
   };
@@ -35,16 +27,11 @@ export default function Home({ data }) {
       <Head>
         <title>Pinterest Clone | Home</title>
       </Head>
-
-      <Navbar onSearch={handleSearch} />
-      <InfiniteScroll
-        dataLength={photos.length}
-        next={fetchPhotos}
-        hasMore={true}
-        loader={<h4 className="dots w-[50%] mx-auto"></h4>}
-      >
-        <Allmedias data={data} photos={photos} />
-      </InfiniteScroll>
+      <div className="relative h-full flex flex-col gap-5">
+        <PhotoSearch handleSearch={handleSearch} />
+        <Navigation />
+        <AllPhotos data={data} photos={photos} />
+      </div>
     </>
   );
 }

@@ -2,29 +2,26 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Mansory from "react-masonry-css";
-import Navigation from "./Segmented";
 
-function Allmedias({photos}) {
-
-    const breakpointColumnsObj = {
+function Allmedias({ photos }) {
+  const breakpointColumnsObj = {
     default: 4,
     1100: 3,
     700: 2,
     500: 1,
   };
-  
+
   return (
     <div className="w-[85%] mx-auto">
-      <Navigation />
       <Mansory
         breakpointCols={breakpointColumnsObj}
-        className="my-masonry-grid w-[85%] mx-auto"
+        className="my-masonry-grid w-full"
         columnClassName="my-masonry-grid_column"
       >
         {photos?.map(
           ({ alt, id, photographer, photographer_url, src, avg_color }) => (
             <div key={id}>
-              <Link href={`/photos/${id}`}>
+              <Link href={`/${id}`}>
                 <figure className="h-auto w-auto">
                   <Image
                     src={src.original}
